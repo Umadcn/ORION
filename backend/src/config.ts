@@ -31,8 +31,8 @@ function resolveDefaultMode(raw: string | undefined): string {
 
 export const config = {
   /** Loopback-only bind address for company-laptop safety. Never 0.0.0.0. */
-  host: process.env.ORION_HOST || '127.0.0.1',
-  port: Number(process.env.ORION_PORT || 8000),
+  host: process.env.ORION_HOST || '0.0.0.0',
+  port: Number(process.env.PORT || process.env.ORION_PORT || 8000),
 
   /** Default OFFLINE. Live external API calls are disabled unless explicitly enabled. */
   integrationMode: (process.env.ORION_INTEGRATION_MODE as IntegrationMode) || 'OFFLINE_FIXTURE',
