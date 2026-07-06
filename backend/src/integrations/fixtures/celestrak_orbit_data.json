@@ -1,0 +1,57 @@
+{
+  "_note": "OFFLINE SAMPLE / DEMO DATA — not live. Modeled on the shape of CelesTrak TLE / SATCAT products. NORAD IDs and TLE lines are illustrative and do not refer to real operational spacecraft.",
+  "_source_name": "CelesTrak",
+  "_source_url": "https://celestrak.org/NORAD/elements/",
+  "objects": [
+    {
+      "object_name": "ORION-1",
+      "norad_id": "90001",
+      "orbit_type": "LEO",
+      "mean_altitude_km": 550,
+      "inclination_deg": 53.0,
+      "period_min": 95.6,
+      "tle_line1": "1 90001U 25001A   25145.50000000  .00001200  00000-0  30000-4 0  9991",
+      "tle_line2": "2 90001  53.0000 120.0000 0001200  90.0000 270.0000 15.05000000 10001"
+    },
+    {
+      "object_name": "ORION-2",
+      "norad_id": "90002",
+      "orbit_type": "LEO",
+      "mean_altitude_km": 560,
+      "inclination_deg": 53.0,
+      "period_min": 95.8,
+      "tle_line1": "1 90002U 25002A   25145.50000000  .00001100  00000-0  29000-4 0  9992",
+      "tle_line2": "2 90002  53.0000 130.0000 0001100  91.0000 269.0000 15.04000000 10002"
+    },
+    {
+      "object_name": "ORION-3",
+      "norad_id": "90003",
+      "orbit_type": "LEO",
+      "mean_altitude_km": 545,
+      "inclination_deg": 53.0,
+      "period_min": 95.5,
+      "tle_line1": "1 90003U 25003A   25145.50000000  .00001300  00000-0  31000-4 0  9993",
+      "tle_line2": "2 90003  53.0000 140.0000 0001300  92.0000 268.0000 15.06000000 10003"
+    },
+    {
+      "object_name": "ORION-4",
+      "norad_id": "90004",
+      "orbit_type": "MEO",
+      "mean_altitude_km": 12000,
+      "inclination_deg": 55.0,
+      "period_min": 431.0,
+      "tle_line1": "1 90004U 25004A   25145.50000000  .00000010  00000-0  00000-0 0  9994",
+      "tle_line2": "2 90004  55.0000 200.0000 0002000  80.0000 280.0000  3.34000000 10004"
+    },
+    {
+      "object_name": "ORION-5",
+      "norad_id": "90005",
+      "orbit_type": "LEO",
+      "mean_altitude_km": 600,
+      "inclination_deg": 97.6,
+      "period_min": 96.7,
+      "tle_line1": "1 90005U 25005A   25145.50000000  .00001000  00000-0  28000-4 0  9995",
+      "tle_line2": "2 90005  97.6000 210.0000 0001000  93.0000 267.0000 14.90000000 10005"
+    }
+  ]
+}

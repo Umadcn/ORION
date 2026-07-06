@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Database (regenerated + seeded automatically on startup)
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+backend/data/*.db
+backend/data/*.db-*
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment (never commit real secrets; use .env.example)
+.env
+.env.local
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

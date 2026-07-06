@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 250" width="260" height="250" role="img" aria-label="ORION AI Assistant robot">
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef2f7"/>
+      <stop offset="42%" stop-color="#b8c2d0"/>
+      <stop offset="78%" stop-color="#6b7686"/>
+      <stop offset="100%" stop-color="#414b5c"/>
+    </linearGradient>
+    <linearGradient id="metalDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8b97a8"/>
+      <stop offset="100%" stop-color="#2a3342"/>
+    </linearGradient>
+    <linearGradient id="torso" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5b6577"/>
+      <stop offset="100%" stop-color="#1c2432"/>
+    </linearGradient>
+    <radialGradient id="face" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#3a4354"/>
+      <stop offset="100%" stop-color="#12171f"/>
+    </radialGradient>
+    <radialGradient id="eye" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#fff4d6"/>
+      <stop offset="35%" stop-color="#ffb020"/>
+      <stop offset="100%" stop-color="#e8730a"/>
+    </radialGradient>
+    <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff9d1e" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#ff9d1e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <!-- Shoulders / upper torso -->
+  <path d="M40 250 C46 196 84 172 130 172 C176 172 214 196 220 250 Z" fill="url(#torso)" stroke="#0c1017" stroke-width="1.5"/>
+  <path d="M78 210 C96 194 164 194 182 210 L176 250 L84 250 Z" fill="#232c3a" opacity="0.6"/>
+  <!-- chest core -->
+  <circle cx="130" cy="214" r="12" fill="#0c1017" stroke="#5b6577" stroke-width="1.5"/>
+  <circle cx="130" cy="214" r="5.5" fill="url(#eye)"/>
+  <circle cx="130" cy="214" r="9" fill="url(#eyeGlow)" filter="url(#soft)"/>
+
+  <!-- Neck -->
+  <rect x="112" y="150" width="36" height="34" rx="8" fill="url(#metalDark)" stroke="#0c1017" stroke-width="1.5"/>
+  <rect x="118" y="156" width="24" height="6" rx="3" fill="#0c1017" opacity="0.7"/>
+
+  <!-- Ear / side modules -->
+  <rect x="34" y="74" width="22" height="46" rx="9" fill="url(#metalDark)" stroke="#0c1017" stroke-width="1.5"/>
+  <circle cx="45" cy="97" r="5" fill="#0c1017"/><circle cx="45" cy="97" r="2" fill="#ffb020"/>
+  <rect x="204" y="74" width="22" height="46" rx="9" fill="url(#metalDark)" stroke="#0c1017" stroke-width="1.5"/>
+  <circle cx="215" cy="97" r="5" fill="#0c1017"/><circle cx="215" cy="97" r="2" fill="#ffb020"/>
+
+  <!-- Head shell -->
+  <path d="M62 92 C62 44 92 20 130 20 C168 20 198 44 198 92 L198 116 C198 150 168 168 130 168 C92 168 62 150 62 116 Z"
+        fill="url(#metal)" stroke="#0c1017" stroke-width="2"/>
+  <!-- top highlight -->
+  <path d="M84 40 C100 28 160 28 176 40 C150 34 110 34 84 40 Z" fill="#ffffff" opacity="0.55"/>
+  <!-- crown seam + forehead sensor -->
+  <path d="M130 22 L130 40" stroke="#0c1017" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="130" cy="48" r="5.5" fill="#0c1017" stroke="#5b6577" stroke-width="1"/>
+  <circle cx="130" cy="48" r="2.6" fill="url(#eye)"/>
+
+  <!-- Face plate -->
+  <path d="M80 74 C80 60 96 54 130 54 C164 54 180 60 180 74 L180 108 C180 132 158 144 130 144 C102 144 80 132 80 108 Z"
+        fill="url(#face)" stroke="#0c1017" stroke-width="1.5"/>
+
+  <!-- Eyes (glow behind, then bright almond) -->
+  <ellipse cx="108" cy="92" rx="20" ry="16" fill="url(#eyeGlow)" filter="url(#soft)"/>
+  <ellipse cx="152" cy="92" rx="20" ry="16" fill="url(#eyeGlow)" filter="url(#soft)"/>
+  <path d="M92 88 C98 80 122 80 126 90 C122 100 98 100 92 96 Z" fill="url(#eye)"/>
+  <path d="M134 90 C138 80 162 80 168 88 C162 100 138 100 134 96 Z" fill="url(#eye)"/>
+  <circle cx="107" cy="90" r="2.4" fill="#fff7e6"/>
+  <circle cx="151" cy="90" r="2.4" fill="#fff7e6"/>
+
+  <!-- Mouth vents -->
+  <g fill="#0c1017" opacity="0.75">
+    <rect x="116" y="120" width="28" height="3.4" rx="1.7"/>
+    <rect x="120" y="127" width="20" height="3" rx="1.5"/>
+  </g>
+
+  <!-- Panel screws -->
+  <g fill="#0c1017" opacity="0.55">
+    <circle cx="74" cy="70" r="2.4"/><circle cx="186" cy="70" r="2.4"/>
+    <circle cx="74" cy="130" r="2.4"/><circle cx="186" cy="130" r="2.4"/>
+  </g>
+</svg>

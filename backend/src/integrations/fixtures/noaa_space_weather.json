@@ -1,0 +1,16 @@
+{
+  "_note": "OFFLINE SAMPLE / DEMO DATA — not live. Modeled on the shape of NOAA SWPC public products. Represents quiet space-weather conditions.",
+  "_source_name": "NOAA Space Weather Prediction Center (SWPC)",
+  "_source_url": "https://services.swpc.noaa.gov/",
+  "planetary_k_index": [
+    { "time_tag": "2025-05-25T09:00:00Z", "kp_index": 2.0 },
+    { "time_tag": "2025-05-25T12:00:00Z", "kp_index": 2.3 },
+    { "time_tag": "2025-05-25T15:00:00Z", "kp_index": 2.3 }
+  ],
+  "solar_wind_speed_km_s": 372,
+  "solar_radiation_storm": "S0 (none)",
+  "geomagnetic_storm": "G0 (none)",
+  "radio_blackout": "R0 (none)",
+  "solar_activity": "low",
+  "commentary": "Geomagnetic field is expected to be quiet. No significant space weather storms in progress."
+}

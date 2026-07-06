@@ -1,0 +1,49 @@
+{
+  "_note": "OFFLINE SAMPLE / DEMO DATA — not live. Modeled on the shape of OpenAlex works search results. Titles are illustrative references for report context only.",
+  "_source_name": "OpenAlex",
+  "_source_url": "https://api.openalex.org/works",
+  "works": [
+    {
+      "id": "https://openalex.org/W-demo-0001",
+      "title": "On-orbit power subsystem anomaly detection and fault isolation in small satellites",
+      "publication_year": 2022,
+      "host_venue": "Journal of Spacecraft Systems (sample)",
+      "topic": "PAYLOAD_POWER_SUBSYSTEM_MALFUNCTION"
+    },
+    {
+      "id": "https://openalex.org/W-demo-0002",
+      "title": "Lithium-ion battery degradation modeling for long-duration LEO missions",
+      "publication_year": 2021,
+      "host_venue": "Acta Energetica Spatialis (sample)",
+      "topic": "BATTERY_DEGRADATION"
+    },
+    {
+      "id": "https://openalex.org/W-demo-0003",
+      "title": "Thermal control failures and mitigation strategies in cubesat platforms",
+      "publication_year": 2020,
+      "host_venue": "Thermal Engineering in Space (sample)",
+      "topic": "THERMAL_CONTROL_FAILURE"
+    },
+    {
+      "id": "https://openalex.org/W-demo-0004",
+      "title": "Space weather effects on satellite electronics: a review of geomagnetic storm impacts",
+      "publication_year": 2023,
+      "host_venue": "Space Weather Reviews (sample)",
+      "topic": "SPACE_WEATHER_INTERFERENCE"
+    },
+    {
+      "id": "https://openalex.org/W-demo-0005",
+      "title": "Autonomous orbit determination and station-keeping under perturbation",
+      "publication_year": 2019,
+      "host_venue": "Journal of Astrodynamics (sample)",
+      "topic": "ORBITAL_PERTURBATION"
+    },
+    {
+      "id": "https://openalex.org/W-demo-0006",
+      "title": "Fault-tolerant communication subsystems for resilient satellite links",
+      "publication_year": 2021,
+      "host_venue": "Satellite Communications Quarterly (sample)",
+      "topic": "COMMUNICATION_SUBSYSTEM_FAILURE"
+    }
+  ]
+}

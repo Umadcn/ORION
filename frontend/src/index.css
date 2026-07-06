@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  /* Shared application-shell layout tokens — one source of truth for header
+     height, sidebar widths, control height, and page spacing so every surface
+     aligns on the same axes (no per-page magic numbers). */
+  :root {
+    --app-header-height: 3.5rem;        /* 56px — sidebar header == top header */
+    --sidebar-expanded-width: 16rem;    /* matches lg:w-64 */
+    --sidebar-collapsed-width: 4.25rem;  /* 68px — matches lg:w-[68px] */
+    --control-height: 2.5rem;           /* 40px — header controls + inputs */
+    --page-padding-x: 1.5rem;
+    --page-padding-y: 1.5rem;
+    --content-gap: 1.25rem;
+    --card-gap: 1.25rem;
+  }
+  body {
+    @apply bg-space-950 text-slate-200 font-sans antialiased;
+  }
+  /* Dark scrollbars for the mission-control aesthetic. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0e1a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #273349;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a4a66;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply rounded-xl border border-space-700 bg-space-850 shadow-panel;
+  }
+  .panel-header {
+    @apply flex items-center justify-between border-b border-space-700 px-5 py-3.5;
+  }
+  .panel-title {
+    @apply text-sm font-semibold tracking-wide text-slate-100;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-accent-blue text-white hover:bg-blue-500;
+  }
+  .btn-danger {
+    @apply btn bg-accent-red/90 text-white hover:bg-accent-red;
+  }
+  .btn-success {
+    @apply btn bg-accent-green/90 text-white hover:bg-accent-green;
+  }
+  .btn-ghost {
+    @apply btn border border-space-600 bg-space-800 text-slate-200 hover:bg-space-700;
+  }
+  .label {
+    @apply text-xs uppercase tracking-wider text-slate-500;
+  }
+  /* Header primitives — one consistent, accessible (40px) icon-button target
+     and one badge height so every top-bar control shares the same vertical
+     rhythm and center line. */
+  .hdr-icon-btn {
+    @apply relative grid h-10 w-10 flex-shrink-0 place-items-center rounded-lg text-slate-400 transition-colors hover:bg-space-800 hover:text-slate-200;
+  }
+  .hdr-badge {
+    @apply inline-flex h-9 flex-shrink-0 items-center gap-1.5 whitespace-nowrap rounded-lg border px-3 text-xs font-semibold;
+  }
+}
+
+/* Subtle, professional motion for the login scene. */
+@layer utilities {
+  @keyframes orion-twinkle { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+  @keyframes orion-dash { to { stroke-dashoffset: -1000; } }
+  @keyframes orion-pulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.9; } }
+  @keyframes orion-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+  .animate-orion-dash { animation: orion-dash 60s linear infinite; }
+  .animate-orion-drift { animation: orion-drift 9s ease-in-out infinite; }
+  .animate-orion-pulse { animation: orion-pulse 6s ease-in-out infinite; }
+  .animate-orion-twinkle { animation: orion-twinkle 4s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-orion-dash, .animate-orion-drift, .animate-orion-pulse, .animate-orion-twinkle {
+    animation: none !important;
+  }
+}
+
+/* Print styles for report export. */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-surface {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: none !important;
+  }
+}

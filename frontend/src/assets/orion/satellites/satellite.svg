@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" width="240" height="120" role="img" aria-label="Satellite">
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c4a7a"/><stop offset="100%" stop-color="#0d2740"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9d4e0"/><stop offset="100%" stop-color="#7c8896"/>
+    </linearGradient>
+  </defs>
+  <!-- solar panels -->
+  <g stroke="#3b6ea5" stroke-width="1">
+    <rect x="6" y="40" width="74" height="40" rx="3" fill="url(#panel)"/>
+    <line x1="31" y1="40" x2="31" y2="80"/><line x1="56" y1="40" x2="56" y2="80"/>
+    <line x1="6" y1="60" x2="80" y2="60"/>
+    <rect x="160" y="40" width="74" height="40" rx="3" fill="url(#panel)"/>
+    <line x1="185" y1="40" x2="185" y2="80"/><line x1="210" y1="40" x2="210" y2="80"/>
+    <line x1="160" y1="60" x2="234" y2="60"/>
+  </g>
+  <!-- connecting struts -->
+  <rect x="80" y="58" width="20" height="4" fill="#8a97a6"/>
+  <rect x="140" y="58" width="20" height="4" fill="#8a97a6"/>
+  <!-- body -->
+  <rect x="98" y="44" width="44" height="32" rx="4" fill="url(#body)" stroke="#5b6673"/>
+  <rect x="104" y="50" width="32" height="8" rx="2" fill="#22d3ee" opacity="0.7"/>
+  <!-- dish -->
+  <ellipse cx="120" cy="30" rx="16" ry="8" fill="#aeb9c6" stroke="#5b6673"/>
+  <line x1="120" y1="38" x2="120" y2="44" stroke="#8a97a6" stroke-width="2"/>
+  <circle cx="120" cy="26" r="2" fill="#f59e0b"/>
+</svg>
