@@ -7,6 +7,30 @@
 import { BaseAgent } from './base.js';
 import { getReferencesFor } from '../integrations/openalex.js';
 import { SAFETY_STATEMENT } from '../config.js';
+import type { Thresholds } from '../analysis/anomalyRules.js';
+import {
+  buildAgents,
+  buildAnomalies,
+  buildAuditTrail,
+  buildDecisionTrace,
+  buildExecutiveSummary,
+  buildRca,
+  buildReview,
+  buildRisk,
+  buildTelemetrySnapshot,
+  buildTransparency,
+  computeCompleteness,
+  type ReportAgentDetail,
+  type ReportAnomalyRow,
+  type ReportAuditRow,
+  type ReportCompleteness,
+  type ReportExecutiveSummary,
+  type ReportRca,
+  type ReportReview,
+  type ReportRiskRow,
+  type ReportSystemTransparency,
+  type ReportTelemetryMetric,
+} from '../services/reportComposer.js';
 import type {
   AgentExecution,
   AgentStatus,
@@ -15,6 +39,7 @@ import type {
   Investigation,
   Recommendation,
   Satellite,
+  Telemetry,
 } from '../types.js';
 
 export interface ReportInput {
@@ -24,6 +49,10 @@ export interface ReportInput {
   evidence: Evidence[];
   recommendations: Recommendation[];
   agentExecutions: AgentExecution[];
+  /** Latest telemetry sample for the satellite (null when none exists). */
+  latestTelemetry?: Telemetry | null;
+  /** Active anomaly thresholds at report time (for expected-range display). */
+  thresholds: Thresholds;
 }
 
 export interface InvestigationReport {
@@ -67,6 +96,27 @@ export interface InvestigationReport {
     cached: boolean;
     fallback_used: boolean;
   }[];
+
+  // ---- Professional structured sections (additive; older reports may omit) ----
+  investigation_id: number;
+  report_status: string;
+  classification: string;
+  satellite_health: number | null;
+  detection_time: string | null;
+  investigation_started_at: string;
+  investigation_completed_at: string | null;
+  executive_summary: ReportExecutiveSummary;
+  telemetry_snapshot: ReportTelemetryMetric[];
+  telemetry_snapshot_time: string | null;
+  anomalies_detail: ReportAnomalyRow[];
+  rca: ReportRca;
+  agents_detail: ReportAgentDetail[];
+  decision_trace: string[];
+  risk_assessment: ReportRiskRow[];
+  audit_trail: ReportAuditRow[];
+  system_transparency: ReportSystemTransparency;
+  completeness: ReportCompleteness;
+  review: ReportReview;
 }
 
 export class ReportGenerationAgent extends BaseAgent<ReportInput, InvestigationReport> {
@@ -94,6 +144,39 @@ export class ReportGenerationAgent extends BaseAgent<ReportInput, InvestigationR
     this.fallback = research.provenance.fallback_used;
 
     const anomalies = safeJson<string[]>(inv.detected_anomalies, []);
+    const latestTelemetry = input.latestTelemetry ?? null;
+    const thresholds = input.thresholds;
+    const healthScore = typeof sat.health_score === 'number' ? sat.health_score : null;
+
+    // --- Deterministic professional sections (derived only from real data) ---
+    const executiveSummary = buildExecutiveSummary(inv, sat, anomalies, recommendations);
+    const telemetrySnapshot = buildTelemetrySnapshot(latestTelemetry, thresholds, healthScore);
+    const anomaliesDetail = buildAnomalies(alerts, anomalies, latestTelemetry, thresholds);
+    const rcaSection = buildRca(inv, evidence);
+    const agentsDetail = buildAgents(agentExecutions, inv.confidence);
+    const decisionTrace = buildDecisionTrace();
+    const riskAssessment = buildRisk(inv, recommendations);
+    const auditTrail = buildAuditTrail(inv, alerts, agentExecutions);
+    const anyAgentFallback = agentExecutions.some((e) => e.status === 'FALLBACK_USED');
+    const systemTransparency = buildTransparency(this.fallback, anyAgentFallback);
+    const review = buildReview(inv);
+    const detectionTime = alerts.length > 0 ? alerts[0].created_at : null;
+    const completedAt = inv.resolved_at ?? inv.reviewed_at ?? null;
+    const completeness = computeCompleteness({
+      hasTelemetry: !!latestTelemetry,
+      satellite: sat,
+      healthPresent: healthScore != null,
+      evidenceCount: evidence.length,
+      confidence: inv.confidence,
+      agentCount: agentExecutions.length,
+      timelineCount: 1 + alerts.length,
+      decisionTraceCount: decisionTrace.length,
+      auditCount: auditTrail.length,
+      recommendationCount: recommendations.length,
+      hasRootCause: !!inv.root_cause,
+      hasSeverity: !!inv.severity,
+      hasSafetyStatement: true,
+    });
 
     const timeline: { time: string; event: string }[] = [
       { time: inv.created_at, event: `Investigation opened for ${sat.id}` },
@@ -166,6 +249,27 @@ export class ReportGenerationAgent extends BaseAgent<ReportInput, InvestigationR
       resolved_at: inv.resolved_at,
       references: research.references.map((r) => ({ title: r.title, host_venue: r.host_venue, publication_year: r.publication_year })),
       provenance,
+
+      // ---- Professional structured sections ----
+      investigation_id: inv.id,
+      report_status: inv.status === 'RESOLVED' || inv.status === 'APPROVED' || inv.status === 'REJECTED' ? 'FINAL' : 'PROVISIONAL',
+      classification: 'CONFIDENTIAL — INTERNAL USE',
+      satellite_health: healthScore,
+      detection_time: detectionTime,
+      investigation_started_at: inv.created_at,
+      investigation_completed_at: completedAt,
+      executive_summary: executiveSummary,
+      telemetry_snapshot: telemetrySnapshot,
+      telemetry_snapshot_time: latestTelemetry?.timestamp ?? null,
+      anomalies_detail: anomaliesDetail,
+      rca: rcaSection,
+      agents_detail: agentsDetail,
+      decision_trace: decisionTrace,
+      risk_assessment: riskAssessment,
+      audit_trail: auditTrail,
+      system_transparency: systemTransparency,
+      completeness,
+      review,
     };
   }
 }

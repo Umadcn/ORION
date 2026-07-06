@@ -4,7 +4,8 @@
  */
 import { db, now } from '../db.js';
 import { ReportGenerationAgent, type InvestigationReport } from '../agents/reportGenerationAgent.js';
-import { getSatellite } from './telemetryService.js';
+import { getSatellite, getLatestTelemetry } from './telemetryService.js';
+import { getThresholds } from './settingsService.js';
 import * as inv from './investigationService.js';
 import type { Report } from '../types.js';
 
@@ -22,6 +23,8 @@ export async function generateReport(investigationId: number): Promise<Report> {
     evidence: inv.getEvidence(investigationId),
     recommendations: inv.getRecommendations(investigationId),
     agentExecutions: inv.getAgentExecutions(investigationId),
+    latestTelemetry: getLatestTelemetry(investigation.satellite_id) ?? null,
+    thresholds: getThresholds(),
   };
 
   const run = await new ReportGenerationAgent().run(input, { investigationId });
