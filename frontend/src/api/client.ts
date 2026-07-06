@@ -36,7 +36,8 @@ import type {
   ProvidersStatus, VerificationResult, ActiveSpaceInfo, ReindexResult, ComparisonRunResult,
 } from '../lib/providers';
 
-const BASE = '/api';
+const BASE =
+  import.meta.env.VITE_API_BASE_URL || "https://orion-backend-0bdi.onrender.com/api";
 
 export class ApiError extends Error {
   constructor(public status: number, message: string, public details?: Record<string, string>) {
