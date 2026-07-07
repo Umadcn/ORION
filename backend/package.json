@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && copyfiles -u 2 \"src/integrations/fixtures/**/*\" dist/integrations/fixtures",
     "serve": "node dist/index.js",
     "test": "vitest run",
     "test:watch": "vitest"
